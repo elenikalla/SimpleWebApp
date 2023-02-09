@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class UserController {
@@ -39,6 +40,19 @@ public class UserController {
         model.addAttribute("listUsers", listUsers);
 //        System.out.println(model);
         return "displayUsers";
+    }
+    @GetMapping("/userDetails")
+    public String userDetails(@RequestParam(name = "userid") String userid,Model model){
+        Optional<User> userDetails = userRepo.findById(userid);
+        System.out.println(userDetails);
+        User user;
+        if (userDetails.isPresent())
+            user = userDetails.get();
+        else
+            throw new RuntimeException(
+                    "Employee not found for id : " + userid);
+        model.addAttribute("user",user);
+        return "userDetails";
     }
 
 }
