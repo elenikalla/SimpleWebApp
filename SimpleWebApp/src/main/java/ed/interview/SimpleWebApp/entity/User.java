@@ -10,19 +10,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="user register")
+@Table(name="user_register")
+@SecondaryTable(name = "addresses", pkJoinColumns = @PrimaryKeyJoinColumn(name = "userid"))
 public class User {
-    private String name;
-    private String surname;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private int userid;
-
+    private String name;
+    private String surname;
     private String gender;
     private String birthdate;
-    private String workAddress;
+    @Column(name = "homeAddress", table = "addresses")
     private String homeAddress;
-
+    @Column(name = "workAddress", table = "addresses")
+    private String workAddress;
 
 }
+
