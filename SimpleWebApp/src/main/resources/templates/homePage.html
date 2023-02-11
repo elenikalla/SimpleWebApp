@@ -6,30 +6,39 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
     <title>SimpleWebApp</title>
+  <style>
+        .vertical-center {
+        min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+        min-height: 100vh; /* These two lines are counted as one :-)       */
+
+        display: flex;
+        align-items: center;
+      }
+        .center {
+          text-align: center;
+        }
+        </style>
 </head>
 <body>
+<div class="mb-3">
+  <h1>Simple Web App</h1>
+</div>
+<div class="vertical-center">
+
   <div class="container">
       <div class="col-5">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="/">HomePage</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/register">Register New User</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/display">Display Users</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
+
+
+        <div class="mb-3 center">
+          <a class="btn btn-primary" href="/register" role="button">Register New User</a>
+        </div>
+        <div class="mb-3 center">
+          <a class="btn btn-primary" href="/display" role="button">Display Users</a>
+        </div>
+        </div>
       </div>
   </div>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
