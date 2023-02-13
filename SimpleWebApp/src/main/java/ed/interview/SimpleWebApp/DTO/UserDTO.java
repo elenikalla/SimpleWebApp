@@ -1,10 +1,13 @@
 package ed.interview.SimpleWebApp.DTO;
 
 import ed.interview.SimpleWebApp.entity.User;
-import jakarta.persistence.Column;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 @NoArgsConstructor
-public class User_Dto {
+@ToString
+@Getter
+@Setter
+public class UserDTO {
 
     private int userid;
     private String name;
@@ -14,7 +17,7 @@ public class User_Dto {
     private String homeAddress;
     private String workAddress;
 
-        public User_Dto(User user){
+        public UserDTO(User user){
             if (user!= null){
                 userid = user.getUserid();
                 name = user.getName();

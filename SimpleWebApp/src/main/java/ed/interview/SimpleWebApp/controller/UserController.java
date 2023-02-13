@@ -1,8 +1,11 @@
 package ed.interview.SimpleWebApp.controller;
 
+import ed.interview.SimpleWebApp.DTO.UserDTO;
 import ed.interview.SimpleWebApp.entity.User;
 import ed.interview.SimpleWebApp.repository.UserRepo;
 import ed.interview.SimpleWebApp.service.UserService;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,10 +13,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
+@AllArgsConstructor
 @Controller
 public class UserController {
-    @Autowired
+
     private UserService service;
     @Autowired
     private UserRepo userRepo;
@@ -28,9 +31,9 @@ public class UserController {
         return "homePage";
     }
     @PostMapping("/registerUser")
-    public String registerUser(@ModelAttribute("user") User user){
+    public String registerUser(@ModelAttribute("user") UserDTO user){
         System.out.println(user);
-        service.registerUser(user);
+        service.createUser(user);
         return "homePage";
     }
 
@@ -42,15 +45,8 @@ public class UserController {
         return "displayUsers";
     }
     @GetMapping("/userDetails")
-    public String userDetails(@RequestParam(name = "userid") String userid,Model model){
-        Optional<User> userDetails = userRepo.findById(userid);
-        System.out.println(userDetails);
-        User user;
-        if (userDetails.isPresent())
-            user = userDetails.get();
-        else
-            throw new RuntimeException(
-                    "Employee not found for id : " + userid);
+    public String userDetails(@RequestParam(name = "userid") int userid,Model model) throws Exception {
+        UserDTO user = service.readUser(userid);
         model.addAttribute("user",user);
         return "userDetails";
     }
